@@ -1,0 +1,47 @@
+﻿ 
+<script>
+
+  
+
+    function chdate() {
+        var dataJSON = document.getElementById("datetime").value;
+        $.ajax({
+            type: 'POST',
+            url: '/api/date/',
+            data: JSON.stringify(dataJSON),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json'
+           
+        });
+
+    }
+
+    function setdate() {
+        document.getElementById("datetime").value = $("#myform input[id=mydate]").val().trim() + ' ' + $("#myform input[id=mytime]").val().trim();
+            $("#myform").hide(400);
+        };
+</script>
+
+<h3>Date-time picker</h3>
+<p>Pick a date and time</p>
+<br />
+<input id="datetime" type="datetime" />
+<input type="button" value="Ok" id="btnOK" onclick=chdate()>
+
+<div class="dialog" id="myform">
+    <form>
+        <label id="mydate">
+            select date
+        </label>
+        <input type="date" id="mydate">
+        <br />
+        <label id="mytime">
+            select time
+        </label>
+        <input type="time" id="mytime" step="2">
+        <div align="center">
+            <input type="button" value="Ok" id="setvalbtn" onclick=setdate()>
+        </div>
+    </form>
+</div>
+
